@@ -61,4 +61,4 @@ if __name__ == '__main__':
 
 	print("Writing output to ", fp.replace(".docx", ".json"))
 	with open(fp.replace(".docx", ".json"), "w+") as f:
-		json.dump(jdoc, f, ensure_ascii=False, indent=4)
+		json.dump(jdoc, f, ensure_ascii=True, indent=4)
