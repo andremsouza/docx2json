@@ -36,7 +36,7 @@ def docxToStringsSepBold(fp):
 
 	# Get remaining elements
 	# In each iteration, compare with previous element for bold/nonbold match
-	# If mathing, join the two paragraphs into one string
+	# If matching, join the two paragraphs into one string
 	# Else, append as usual
 	for n, paragraph in enumerate(doc.paragraphs, start+1):
 		if paragraph.text.replace(" ", ""): # Not considering empty paragraphs
