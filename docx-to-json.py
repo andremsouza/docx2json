@@ -38,13 +38,13 @@ def docxToStringsSepBold(fp):
 	# In each iteration, compare with previous element for bold/nonbold match
 	# If matching, join the two paragraphs into one string
 	# Else, append as usual
-	for n, paragraph in enumerate(doc.paragraphs, start+1):
+	for paragraph in doc.paragraphs[start+1:]:
 		if paragraph.text.replace(" ", ""): # Not considering empty paragraphs
 			for run in paragraph.runs:
 				if run.bold and prev.bold: # Bold after bold
-					bold[-1] = "\n".join([bold[-1], paragraph.text])
+					bold[-1] = " ".join([bold[-1], paragraph.text])
 				elif not(run.bold or prev.bold): # Nonbold after Nonbold
-					nonbold[-1] = "\n".join([nonbold[-1], paragraph.text])
+					nonbold[-1] = " ".join([nonbold[-1], paragraph.text])
 				elif run.bold: # Bold after nonbold
 					bold.append(paragraph.text)
 				else: # Nonbold after bold
