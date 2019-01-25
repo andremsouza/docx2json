@@ -61,9 +61,9 @@ def convert(inputFile, sepBold=True, withSave=False, outputFile=None):
 	jdoc = {}
 
 	if sepBold:
-		jdoc["text"], jdoc["bold"], jdoc["nonbold"] = DocxToJson.__docxToStrings(inputFile, sepBold)
+		jdoc["text"], jdoc["bold"], jdoc["nonbold"] = __docxToStrings(inputFile, sepBold)
 	else:
-		jdoc["text"] = DocxToJson.__docxToStrings(inputFile, sepBold)[0]
+		jdoc["text"] = __docxToStrings(inputFile, sepBold)[0]
 
 	if withSave:
 		with open(outputFile, "w+") as f:
@@ -73,4 +73,4 @@ def convert(inputFile, sepBold=True, withSave=False, outputFile=None):
 if __name__ == '__main__':
 	inputFile = input("Type the filepath to the .docx: ")
 	print("Writing output to ", inputFile.replace(".docx", ".json"))
-	DocxToJson.convert(inputFile)
+	convert(inputFile)
