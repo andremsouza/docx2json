@@ -3,7 +3,6 @@ import json
 # from itertools import tee
 
 
-# fp = "../sample-files/Camila Ferezin do Amarante ( Ginastica ritmica ).docx"
 # Convert .docx file to a list of paragraph strings
 # Removes empty strings
 def docxToStrings(fp):
