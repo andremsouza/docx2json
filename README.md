@@ -1,5 +1,5 @@
 # docx-to-json
-Python algorithm that converts text from a .docx file into .json format.
+Python script that converts text from a .docx file into .json format.
 
 ## Usage:
 The user must type the relative or absolute path to the desired .docx file.
