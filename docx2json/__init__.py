@@ -68,7 +68,7 @@ def convert(inputFile, sepBold=True, withSave=False, outputFile=None):
 	if withSave:
 		with open(outputFile, "w+") as f:
 			json.dump(jdoc, f, ensure_ascii=True, indent=4)
-	return jdoc
+	return json.dumps(jdoc, ensure_ascii=True, indent=4)
 
 if __name__ == '__main__':
 	inputFile = input("Type the filepath to the .docx: ")

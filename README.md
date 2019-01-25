@@ -1,9 +1,26 @@
-# docx-to-json
+# docx2json
 Python script that converts text from a .docx file into .json format.
+
+# Installation
+```bash
+pip3 install docx2json
+```
 
 ## Usage:
 If using as one python script, the user must type the relative or absolute path to the desired .docx file.
+
 If using as a class, the user may choose one of the public methods to convert as desired.
+
+Method for conversion:
+```python
+# Converts .docx file situated in the inputFile string path
+# if sepBold==True
+#	separates paragraphs starting or not with bold characters into two lists: "bold", "nonbold"
+# if withSave==True
+# 	saves output file to outputFile filepath, with default value being at the same location as the input file inputFile
+# returns a json variable
+convert(inputFile, sepBold=True, withSave=False, outputFile=None)
+```
 
 ## Output:
 The script will then convert all text from the .docx to a .json file with the same name, at the same directory as the input file. The structure of the output JSON is as follows:
