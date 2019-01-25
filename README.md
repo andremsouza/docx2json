@@ -13,6 +13,7 @@ If using as a class, the user may choose one of the public methods to convert as
 
 Method for conversion:
 ```python
+import docx2json
 # Converts .docx file situated in the inputFile string path
 # if sepBold==True
 #	separates paragraphs starting or not with bold characters into two lists: "bold", "nonbold"
