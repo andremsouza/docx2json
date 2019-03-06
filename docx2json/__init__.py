@@ -9,7 +9,7 @@ import json
 # 	So, they are concatenated into one string, separated by '\n'
 # Returns three lists of strings: "text", "bold" and "nonbold" paragraphs
 def __docxToStrings(inputFile, sepBold=True):
-	text = list(filter(None, [para.text for para in docx.Document(inputFile).paragraphs]))
+	text = list(filter(None, [para.text.replace("\n", "") for para in docx.Document(inputFile).paragraphs]))
 	bold, nonbold = [], []
 
 	if sepBold:
@@ -19,12 +19,13 @@ def __docxToStrings(inputFile, sepBold=True):
 		# Get first element and append
 		prev = None
 		for n, paragraph in enumerate(doc.paragraphs):
+			para = paragraph.text.replace("\n", "")
 			if paragraph.text.replace(" ", ""): # Not considering empty paragraphs
 				for run in paragraph.runs:
 					if run.bold:
-						bold.append(paragraph.text)
+						bold.append(para)
 					else:
-						nonbold.append(paragraph.text)
+						nonbold.append(para)
 					prev = run
 					start = n
 					break
@@ -36,16 +37,17 @@ def __docxToStrings(inputFile, sepBold=True):
 		# If matching, join the two paragraphs into one string
 		# Else, append as usual
 		for paragraph in doc.paragraphs[start+1:]:
+			para = paragraph.text.replace("\n", "")
 			if paragraph.text.replace(" ", ""): # Not considering empty paragraphs
 				for run in paragraph.runs:
 					if run.bold and prev.bold: # Bold after bold
-						bold[-1] = " ".join([bold[-1], paragraph.text])
+						bold[-1] = " ".join([bold[-1], para])
 					elif not(run.bold or prev.bold): # Nonbold after Nonbold
-						nonbold[-1] = " ".join([nonbold[-1], paragraph.text])
+						nonbold[-1] = " ".join([nonbold[-1], para])
 					elif run.bold: # Bold after nonbold
-						bold.append(paragraph.text)
+						bold.append(para)
 					else: # Nonbold after bold
-						nonbold.append(paragraph.text)
+						nonbold.append(para)
 					prev = run
 					break
 	return text, bold, nonbold
@@ -72,5 +74,5 @@ def convert(inputFile, sepBold=True, withSave=False, outputFile=None):
 
 if __name__ == '__main__':
 	inputFile = input("Type the filepath to the .docx: ")
-	print("Writing output to ", inputFile.replace(".docx", ".json"))
-	convert(inputFile)
+	outputFile = input("Type the output filepath (empty if you don't want to save the output): ")
+	print(convert(inputFile, True, outputFile != None, outputFile))
