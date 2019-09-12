@@ -47,8 +47,8 @@ def __docxToStrings(inputFile, sepBold=True):
         # Else, append as usual
         for paragraph in doc.paragraphs[start + 1:]:
             para = paragraph.text.replace("\n", "")
-            if paragraph.text.replace(" ",
-                                      ""):  # Not considering empty paragraphs
+            # Not considering empty paragraphs
+            if paragraph.text.replace(" ", "").replace("\n", ""):
                 for run in paragraph.runs:
                     if run.bold and prev.bold:  # Bold after bold
                         bold[-1] = " ".join([bold[-1], para])
