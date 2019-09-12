@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="docx2json",
-    version="0.0.9",
+    version="0.0.10",
     author="andremsouza",
     author_email="msouza.andre@hotmail.com",
     description="Python script that converts text from a .docx file to .json.",
