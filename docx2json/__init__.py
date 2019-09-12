@@ -13,11 +13,11 @@ def __docxToStrings(inputFile, sepBold=True):
     Returns three lists of strings: "text", "bold" and "nonbold" paragraphs
     """
     # Removing empty paragraphs
-    text = list(
-        filter(None, [
-            para.text.replace("\n", "")
-            for para in docx.Document(inputFile).paragraphs
-        ]))
+    text = [
+        para.text.replace("\n", "")
+        for para in docx.Document(inputFile).paragraphs
+        if para.text.replace("\n", "").replace(" ", "")
+    ]
     bold, nonbold = [], []
 
     if sepBold:
@@ -92,8 +92,7 @@ def convert(inputFile, sepBold=True, withSave=False, outputFile=None):
 if __name__ == '__main__':
     inputFile = input("Type the filepath to the .docx: ")
     outputFile = input(
-        "Type the output filepath (empty if you don't want to save): "
-    )
+        "Type the output filepath (empty if you don't want to save): ")
     print(
         convert(inputFile, True,
                 len(outputFile) > 0,
