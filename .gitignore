@@ -9,3 +9,6 @@
 
 # build info
 /build/
+
+# VS Code files
+.vscode/
