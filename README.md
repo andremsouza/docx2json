@@ -9,7 +9,7 @@ pip3 install docx2json
 ## Usage:
 If using as one python script, the user must type the relative or absolute path to the desired .docx file.
 
-If using as a class, the user may choose one of the public methods to convert as desired.
+If using as a module, the user may choose one of the public methods to convert as desired.
 
 Method for conversion:
 ```python
